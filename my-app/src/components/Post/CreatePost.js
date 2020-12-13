@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {v4 as uuidv4} from 'uuid';
+import {v4 as uuid} from 'uuid';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import './styles.css';
@@ -27,7 +27,7 @@ const CreatePost = ({onPostCreated}) => {
             console.log('Title and body are required');
         }else{
             const newPost = {
-                id: uuidv4(),
+                id: uuid(),
                 title: title,
                 body: body,
                 date: moment().toISOString()
@@ -40,20 +40,20 @@ const CreatePost = ({onPostCreated}) => {
                     }
                 };
 
-                const body = JSON.stringify(newPost);
-                const res = await axios.post(
-                    'http://localhost:5000/api/posts',
-                    body,
-                    config
-                );
+            const body = JSON.stringify(newPost);
+            const res = await axios.post(
+                'http://localhost:5000/api/posts',
+                body,
+                config
+            );
 
-                onPostCreated(res.data);
-                history.push('/');
+            onPostCreated(res.data);
+            history.push('/');
             }catch(error){
                 console.error(`Error creating post: ${error.response.data}`);
             }
         }
-    }
+    };
 
     return (
         <div className="form-container">
