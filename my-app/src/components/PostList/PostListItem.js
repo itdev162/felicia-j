@@ -14,6 +14,7 @@ const PostListItem = props => {
         history.push(`/posts/${slug}`);
     };
 
+    
     return(
         <div>
             <div className="postListItem" onClick={() => handleClickPost(post)}>
